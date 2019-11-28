@@ -1,0 +1,43 @@
+
+public class Smileys {
+
+    String charLength = "";
+
+    public static void main(String[] args) {
+
+        printWithSmileys("Mikael");
+        printWithSmileys("Beerbottle");
+        printWithSmileys("Interface");
+    }
+
+    private static void printWithSmileys(String characterString) {
+        String middle = middleSmile(characterString);
+        int length = middle.length();
+
+        topAndBottomSmile(length);
+        System.out.println(middle);
+        topAndBottomSmile(length);
+
+    }
+
+    public static void topAndBottomSmile(Integer length) {
+        String smiles = "";
+        for (int i = 0; i < length / 2; i++) {
+            smiles += ":)";
+        }
+        System.out.println(smiles);
+    }
+
+    public static String middleSmile(String characterString) {
+        String charLength = "";
+        charLength += ":) ";
+        charLength += characterString;
+        charLength += " ";
+        if (characterString.length() % 2 == 1) {
+            charLength += " ";
+        }
+        charLength += ":)";
+        return charLength;
+    }
+        
+}

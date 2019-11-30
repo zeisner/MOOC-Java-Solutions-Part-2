@@ -1,0 +1,66 @@
+
+
+public class Calculator {
+
+    private int numberCalc = 0;
+    private Reader reader;
+
+    public Calculator() {
+        this.reader = new Reader();
+    }
+
+    public void start() {
+        while (true) {
+            System.out.print("command: ");
+            String command = reader.readString();
+            if (command.equals("end")) {
+                break;
+            }
+
+            if (command.equals("sum")) {
+                sum();
+            } else if (command.equals("difference")) {
+                difference();
+            } else if (command.equals("product")) {
+                product();
+            }
+        }
+
+        statistics();
+    }
+
+    private void sum() {
+        int sum = value1() + value2();
+        numberCalc++;
+        System.out.println("sum of the values " + sum);
+    }
+
+    private void difference() {
+        int difference = value1() - value2();
+        numberCalc++;
+        System.out.println("difference of the values " + difference);
+    }
+
+    private void product() {
+        int product = value1() * value2();
+        numberCalc++;
+        System.out.println("product of the values " + product);
+    }
+
+    private void statistics() {
+        System.out.println("Communications done " + numberCalc);
+    }
+
+    private int value1() {
+        System.out.print("value1: ");
+        int value1 = reader.readInteger();
+        return value1;
+    }
+
+    private int value2() {
+        System.out.print("value1: ");
+        int value2 = reader.readInteger();
+        return value2;
+    }
+
+}

@@ -1,0 +1,23 @@
+
+import java.util.ArrayList;
+import java.util.*;
+
+public class Changer {
+
+    private ArrayList<Change> changer;
+
+    public Changer() {
+        changer = new ArrayList<Change>();
+    }
+
+    public void addChange(Change change) {
+        changer.add(change);
+    }
+
+    public String change(String characterString) {       
+         for (Change singleChange : changer) {
+        characterString = singleChange.change(characterString);
+    }
+         return characterString;
+    }
+}

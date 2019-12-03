@@ -14,11 +14,16 @@ public class Thing {
         return this.name;
     }
     
-    public Integer getWeight() {
-        return this.weight;
+    public int getWeight() {
+        return weight;
+    }
+    
+    public void setWeight(int weight) {
+        this.weight = weight;
     }
     
     public String toString() {
         return this.getName() + " (" + this.getWeight() + " kg)";
     }
 }
+

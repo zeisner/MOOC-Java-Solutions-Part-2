@@ -11,6 +11,14 @@ public class Suitcase {
         this.maxWeight = maxWeight;
     }
 
+    public int totalWeight() {
+        int totalWeight = 0;
+        for (Thing thing : things) {
+            totalWeight += thing.getWeight();
+        }
+        return totalWeight;
+    }
+
     public void addThing(Thing thing) {
         if (totalWeight() + thing.getWeight() <= this.maxWeight) {
             this.things.add(thing);
@@ -32,20 +40,27 @@ public class Suitcase {
             System.out.println(thing.getName() + " (" + thing.getWeight() + " kg)");
         }
     }
-
-    public int totalWeight() {
-        int totalWeight = 0;
-        for (Thing thing : things) {
-            totalWeight += thing.getWeight();
-        }
-        return totalWeight;
+    
+     public Thing heaviestThing() {
+        
+        if (things.isEmpty()) {          
+            return null;
+        } 
+            Thing heaviestItem = this.things.get(0);
+            for (Thing thing : this.things) {             
+                if (thing.getWeight() > heaviestItem.getWeight()) {
+                    heaviestItem = thing;
+                }
+            }        
+        return heaviestItem;
     }
 
-    public String heaviestThing() {
+    public String toHeavyString() {
         int heaviestItem = 0;
         String heaviestThing = "";
         if (things.isEmpty()) {
-            return null;
+            heaviestThing = "Empty (0 kg)";
+            return heaviestThing;
         } else {
             for (Thing thing : this.things) {
                 if (thing.getWeight() > heaviestItem) {

@@ -1,0 +1,109 @@
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Scanner;
+
+public class AirportPanel {
+
+    private Scanner reader;
+    private HashMap<String, String> addAirplane;
+    private HashMap<String, String> addDeparture;
+    private HashMap<String, String> addDestination;
+    FlightService options = new FlightService();
+    ArrayList<String> flightList = new ArrayList<String>();
+
+    public AirportPanel(Scanner reader) {
+        this.reader = reader;
+        this.addAirplane = new HashMap<String, String>();
+        this.addDeparture = new HashMap<String, String>();
+        this.addDestination = new HashMap<String, String>();
+    }
+
+    public void panelOperation() {
+        options.panelChoice();
+        String userInput = reader.nextLine();
+        if (!userInput.equals("x")) {
+            if (userInput.equals("1")) {
+                addAirplane();
+                panelOperation();
+
+            } else if (userInput.equals("2")) {
+                addFlight();
+                panelOperation();
+            } else {
+                panelOperation();
+            }
+        }
+        System.out.println();
+    }
+
+    public void serviceOperation() {
+        options.serviceChoice();
+        String userInput = reader.nextLine();
+
+        if (!userInput.equals("x")) {
+
+            if (userInput.equals("1")) {
+                printPlanes();
+                serviceOperation();
+            } else if (userInput.equals("2")) {
+                printFlights();
+                serviceOperation();
+            } else if (userInput.equals("3")) {
+                printPlaneInfo();
+                serviceOperation();
+            } else {
+                serviceOperation();
+            }
+        }
+        System.out.println();
+    }
+
+    public void addAirplane() {
+        System.out.println("Give plane ID: ");
+        String planeId = reader.nextLine();
+        System.out.println("Give plane capacity: ");
+        String planeCapacity = reader.nextLine();
+        this.addAirplane.put(planeId, planeCapacity);
+    }
+
+    public void addFlight() {
+
+        System.out.println("Give plane ID: ");
+        String planeId = reader.nextLine();
+        System.out.println("Give departure airport code: ");
+        String departureCode = reader.nextLine();
+        System.out.println("Give destination airport code: ");
+        String destinationCode = reader.nextLine();
+        flightList.add(planeId + " (" + this.addAirplane.get(planeId)
+                + " ppl) (" + departureCode + "-" + destinationCode + ")");
+        this.addDeparture.put(planeId, departureCode);
+        this.addDestination.put(planeId, destinationCode);
+    }
+
+    public void printFlights() {
+
+        for (String flight : flightList) {
+            System.out.println(flight);
+        }
+
+    }
+
+    public void printPlanes() {
+        ArrayList<String> planeList = new ArrayList<String>();
+        for (String key : addAirplane.keySet()) {
+            System.out.println(key + " (" + this.addAirplane.get(key) + " ppl)");
+        }
+    }
+
+    public void printPlaneInfo() {
+        String capacity = "";
+        System.out.println("Give plane ID: ");
+        String planeId = reader.nextLine();
+        if (this.addAirplane.containsKey(planeId)) {
+            capacity = this.addAirplane.get(planeId);
+        }
+        System.out.println(planeId + " (" + capacity + " ppl)");
+    }
+
+}

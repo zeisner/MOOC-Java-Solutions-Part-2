@@ -1,0 +1,17 @@
+
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner reader = new Scanner(System.in);
+        AirportPanel panel = new AirportPanel(reader);
+        FlightService options = new FlightService();
+        options.panelIntro();
+        panel.panelOperation();
+        options.flightIntro();
+        options.serviceChoice();
+        panel.serviceOperation();
+
+    }
+}

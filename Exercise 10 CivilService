@@ -1,0 +1,21 @@
+
+public class CivilService implements NationalService {
+
+    private int daysLeft = 362;
+
+    public CivilService() {
+        this.daysLeft = daysLeft;
+    }
+
+    @Override
+    public int getDaysLeft() {
+        return this.daysLeft;
+    }
+
+    @Override
+    public void work() {
+        if (this.daysLeft > 0) {
+            this.daysLeft--;
+        }
+    }
+}
